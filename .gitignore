@@ -3,3 +3,9 @@
 /hashTable.c
 /test.dat
 /trips.csv
+/CMakeCache.txt
+/helpers.o
+/practica1
+/CMakeFiles
+/.~lock.trips.csv#
+/createHashTable.o
