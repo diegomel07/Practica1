@@ -11,7 +11,8 @@
 #include <algorithm>
 using namespace std;
 
-const int TABLE_SIZE = 2000;
+const int TABLE_SIZE = 2000; 
+
 
 // Estructura que guarda un viaje
 struct Trip {

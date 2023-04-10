@@ -16,6 +16,6 @@ Para compilar este proyecto ejecute la siguiente instruccion
 Para ejecutar el proyecto:
 
 ```bash
-  ./myprogram
+  ./practica1
 ```
 

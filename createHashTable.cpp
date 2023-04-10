@@ -47,7 +47,7 @@ int getTableSize() {
 }
 */
 
-
+// De que manera puedo escoger el tamaño, como me aseguro de que si se guardo todo de manera correcta. Porque la hashfunction genera el mismo numero que le mando
 // Funcion para llenar la hash table con los valores que estan en el archivo
 HashTable fillHashTable(HashTable ht)
 {
@@ -186,12 +186,12 @@ int main (int argc, char *argv[])
   // --------- Fin Prueba ------- 
 
   // prueba de la funcion de busqueda
-  vector<Trip> search = searchTrip("test.dat", hashFunction(462));
+  vector<Trip> search = searchTrip("test.dat", hashFunction(33));
   
   // La funcion de readBucketFromFile devueve un vector con todos los viajes que empiecen en el destino proporcionado por el id
   //Se realiza ahora la busqueda de el viaje exacto que se necesita
   auto it = find_if(search.begin(), search.end(), [](const Trip& p) {
-    return p.dstid == 1028 && p.hod == 1  ;
+    return p.dstid == 442 && p.hod == 9  ;
   });
   
 
