@@ -1,19 +1,17 @@
-CC=g++
-CFLAGS=-c -Wall
-LDFLAGS=
+cmake_minimum_required(VERSION 3.0)
 
-SOURCES=createHashTable.cpp helpers.cpp
-OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=practica1
+# Set the project name
+project(practica1)
 
-all: $(SOURCES) $(EXECUTABLE)
+# Set the C++ standard
+set(CMAKE_CXX_STANDARD 11)
 
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+# Add an executable
+add_executable(practica1 createHashTable.cpp helpers.cpp)
 
-.cpp.o:
-	$(CC) $(CFLAGS) $< -o $@
+# Add the directory containing the header file to the include path
+target_include_directories(practica1 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-clean:
-	rm -f $(EXECUTABLE) $(OBJECTS)
+# Set the output directory for the executable
+set_target_properties(practica1 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 
