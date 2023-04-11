@@ -9,3 +9,6 @@
 /CMakeFiles
 /.~lock.trips.csv#
 /createHashTable.o
+/Makefile
+/cmake_install.cmake
+/bin
