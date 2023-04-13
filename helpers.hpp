@@ -86,7 +86,8 @@ class HashTable
     }
 };
 
-vector<Trip> searchTrip(const string& filename, int bucket_index);
-//vector<Trip> searcInBucket(vector<Trip> bucket, int dstid, int hod);
+int hashFunction(int n);
+float searchTrip(const string& filename, int bucket_index, int dstid, int hod);
+float searcInBucket(vector<Trip> bucket, int dstid, int hod);
 
 #endif

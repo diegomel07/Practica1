@@ -7,7 +7,7 @@ project(practica1)
 set(CMAKE_CXX_STANDARD 11)
 
 # Add an executable
-add_executable(practica1 createHashTable.cpp helpers.cpp)
+add_executable(practica1 Main.cpp helpers.cpp)
 
 # Add the directory containing the header file to the include path
 target_include_directories(practica1 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})

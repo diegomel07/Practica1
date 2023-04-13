@@ -9,15 +9,25 @@
 #include <cstddef>
 #include <algorithm>
 
+
+int hashFunction(int n) 
+{
+  static const int prime = 31;
+  int hash = 0;
+  hash = prime * hash + n;
+  return hash % TABLE_SIZE;
+} 
+
+
 // Funcion para realizar la busqueda de un indice o bucket de la hash table
-vector<Trip> searchTrip(const string& filename, int bucket_index) {
+float searchTrip(const string& filename, int bucket_index, int dstid, int hod) {
     vector<Trip> bucket;
     
     // Aprtura del archivo
     ifstream fin(filename, ios::binary);
     if (!fin) {
         cerr << "Error: Unable to open file \"" << filename << "\" for reading." << endl;
-        return bucket;
+        return -1.0;
     }
 
     // leemos la cantidad de buckets que tiene la hash table
@@ -27,7 +37,7 @@ vector<Trip> searchTrip(const string& filename, int bucket_index) {
     // si el indice proporcionado es mayor que la cantidad de buckets que tiene la hash table
     if (bucket_index >= num_buckets) {
         cerr << "Error: Bucket index out of range." << endl;
-        return bucket;
+        return -1.0;
     }
 
     // realizamos la busqueda del bucket
@@ -49,17 +59,19 @@ vector<Trip> searchTrip(const string& filename, int bucket_index) {
 
     fin.close();
 
-    return bucket;
-    //return searcInBucket(bucket, dstid, hod);
+    //return bucket;
+    return searcInBucket(bucket, dstid, hod);
 }
 
-/*
-vector<Trip> searcInBucket(vector<Trip> bucket, int dstid, int hod)
+float searcInBucket(vector<Trip> bucket, int dstid, int hod)
 {
   // Se realiza ahora la busqueda de el viaje exacto que se necesita
-  auto trip = std::find_if(bucket.begin(), bucket.end(), [](const Trip& t) {
-    return t.dstid == 494 && t.hod == 21;
-  });
-
+  for (Trip t : bucket)
+  {
+    if (t.dstid == dstid && t.hod == hod)
+    {
+      return t.mean_travel_time;
+    }
+  }
+  return -1.0;
 }
-*/

@@ -173,34 +173,3 @@ int hashFunction(int n)
   hash = prime * hash + n;
   return hash % TABLE_SIZE;
 } 
-
-int main (int argc, char *argv[])
-{
-  // Primero guardamos en un archivo la hash table que creamos del archivo csv
-  //HashTable ht;
-  //saveHashTableToFile(fillHashTable(ht), "test.dat");
-
-  // --------- Prueba ----------
-  // Cargarmos la hash table de el archivo
-  //HashTable load = loadHashTableFromFile("test.dat");
-  // --------- Fin Prueba ------- 
-
-  // prueba de la funcion de busqueda
-  vector<Trip> search = searchTrip("test.dat", hashFunction(33));
-  
-  // La funcion de readBucketFromFile devueve un vector con todos los viajes que empiecen en el destino proporcionado por el id
-  //Se realiza ahora la busqueda de el viaje exacto que se necesita
-  auto it = find_if(search.begin(), search.end(), [](const Trip& p) {
-    return p.dstid == 442 && p.hod == 9  ;
-  });
-  
-
-  // imprimimos el viaje encontrado 
-  if (it != search.end()) {
-    cout << "Trip: " << it->source_id << " - " << it->dstid << " - " << it->hod << " - " << it->mean_travel_time << endl;
-  } else {
-    cout << "Trip not found" << endl;
-  }
-
-  return 0;
-}
