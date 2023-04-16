@@ -8,6 +8,10 @@
 #include <list>
 #include <cstddef>
 #include <algorithm>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
 
 
 int hashFunction(int n) 
@@ -74,4 +78,43 @@ float searcInBucket(vector<Trip> bucket, int dstid, int hod)
     }
   }
   return -1.0;
+}
+
+//Funcion para particion de procesos
+float pipe_process(int id_origen, int id_destino, int hora)
+{
+    pid_t pid;
+    int dev_funcion;
+    int pipefd[2];
+    float buf;
+    float prueba;
+    
+    dev_funcion = pipe(pipefd);
+    if(dev_funcion < 0){  
+        exit(-1);
+    }
+    pid = fork();
+    if (pid == -1){ 
+        exit(EXIT_FAILURE); 
+    }
+    
+    if(pid == 0){
+        close(pipefd[0]);
+        prueba = searchTrip("test.dat", hashFunction(id_origen), id_destino, hora);
+        dev_funcion = write(pipefd[1], reinterpret_cast<const char*>(&prueba), sizeof(float));
+        if(dev_funcion != 4){   
+            return 0; 
+        }
+        close(pipefd[1]);
+        exit(0);    
+    }
+    else{ 
+        close(pipefd[1]);
+        dev_funcion = read(pipefd[0], reinterpret_cast<char*>(&buf),sizeof(float));
+        if(dev_funcion != 4){   
+            return 0;
+        }
+        close(pipefd[0]); 
+        return buf;
+    }
 }

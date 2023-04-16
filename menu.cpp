@@ -44,7 +44,7 @@ int main(){
         break;
       case 4:
         cout << "\033[2J\033[1;1H";
-        cout << "Tiempo de viaje medio: " << searchTrip("test.dat", hashFunction(id_origen), id_destino, hora) << endl; //esto va con condicional ya que pueden existir dos valores
+        cout << "Tiempo de viaje medio: " << pipe_process(id_origen,id_destino,hora) << endl;
       case 5:
         break;
     }
@@ -52,3 +52,4 @@ int main(){
 
   return 0;
 };
+//searchTrip("test.dat", hashFunction(id_origen), id_destino, hora) 
