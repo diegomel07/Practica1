@@ -7,14 +7,12 @@
 
 ## Ejecutar
 
-Para compilar este proyecto ejecute la siguiente instruccion
+Para compilar este proyecto ejecute las siguientes instrucciones:
 
 ```bash
-  cmake .
-```
-
-Luego ejecute
-```bash
+  mkdir build
+  cd build
+  cmake ..
   make
 ```
 
@@ -25,5 +23,5 @@ Para ejecutar el proyecto:
 ```bash
   ./practica1
 ```
-Es necesario incluir dentro de la carpeta bin el archivo csv.
 
+Es necesario incluir dentro de la carpeta bin el archivo csv y el archivo de la hash table.

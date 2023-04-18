@@ -5,6 +5,7 @@ using namespace std;
 
 int main(){
   int opc, id_origen = -1, id_destino = -1, hora = -1;
+  float tiempo_medio = 0;
 
   cout<<"*************************************************"<<endl;
   cout<<"*******************Bienvenido********************"<<endl;
@@ -18,7 +19,7 @@ int main(){
       cout << "Datos actuales:\n \torigen: " << id_origen << "\n\tdestino: " << id_destino << "\n \thora: " << hora << endl;
     }
 
-    cout<<"1. Ingresar Origen"<<endl;
+    cout<<"\n1. Ingresar Origen"<<endl;
     cout<<"2. Ingresar Destino"<<endl;
     cout<<"3. Ingresar Hora"<<endl;
     cout<<"4. Buscar tiempo de viaje medio"<<endl;
@@ -28,23 +29,42 @@ int main(){
 
     switch(opc){
       case 1:
-        cout << "Selecciona el ID de origen (entre 1 - 1160): ";
-        cin >> id_origen;
+        do
+        {
+          cout << "Selecciona el ID de origen (entre 1 - 1160): ";
+          cin >> id_origen;
+        } while(id_origen < 1 || id_origen > 1160);
+
         cout << "\033[2J\033[1;1H";
         break;
       case 2:
-        cout << "Selecciona el ID de destino (entre 1 - 1160): ";
-        cin >> id_destino;
+        do
+        {
+          cout << "Selecciona el ID de destino (entre 1 - 1160): ";
+          cin >> id_destino;
+        } while(id_destino < 1 || id_destino > 1160);
+
         cout << "\033[2J\033[1;1H";
         break;
       case 3:
-        cout << "Selecciona la hora (entre 0 - 23): ";
-        cin >> hora;
+        do
+        {
+          cout << "Selecciona la hora (entre 0 - 23): ";
+          cin >> hora;
+        } while(hora < 0 || hora > 23);
+
         cout << "\033[2J\033[1;1H";
         break;
       case 4:
         cout << "\033[2J\033[1;1H";
-        cout << "Tiempo de viaje medio: " << pipe_process(id_origen,id_destino,hora) << endl;
+
+        tiempo_medio = pipe_process(id_origen, id_destino, hora);
+        if (tiempo_medio < 0)
+          {
+            cout << "\n------- NA -------\n" << endl;
+          } else {
+          cout << "------- Tiempo de viaje medio: " << pipe_process(id_origen,id_destino,hora) << " -------\n" <<endl;
+        }
       case 5:
         break;
     }
@@ -52,4 +72,3 @@ int main(){
 
   return 0;
 };
-//searchTrip("test.dat", hashFunction(id_origen), id_destino, hora) 
