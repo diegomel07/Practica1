@@ -1,18 +1,5 @@
 #include "helpers.hpp"
 
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <vector>
-#include <cstring>
-#include <list>
-#include <cstddef>
-#include <algorithm>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-
 
 int hashFunction(int n) 
 {

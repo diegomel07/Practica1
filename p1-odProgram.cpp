@@ -1,7 +1,6 @@
-#include <iostream>
+#include <sys/wait.h>
+#include <time.h>
 #include "helpers.hpp"
-
-using namespace std;
 
 int main(){
   int opc, id_origen = -1, id_destino = -1, hora = -1;
@@ -58,12 +57,22 @@ int main(){
       case 4:
         cout << "\033[2J\033[1;1H";
 
+        clock_t start_time, end_time;
+        double cpu_time_used;
+
+        start_time = clock();
         tiempo_medio = pipe_process(id_origen, id_destino, hora);
+        end_time = clock();
+
+        cpu_time_used = ((double) (end_time - start_time)) / CLOCKS_PER_SEC;
+        cout << "\tTiempo empleado en la busqueda: " << cpu_time_used << " segundos" << endl;
+        
         if (tiempo_medio < 0)
           {
             cout << "\n------- NA -------\n" << endl;
           } else {
-          cout << "------- Tiempo de viaje medio: " << pipe_process(id_origen,id_destino,hora) << " -------\n" <<endl;
+
+          cout << "------- Tiempo de viaje medio: " << tiempo_medio << " -------\n" <<endl;
         }
       case 5:
         break;

@@ -1,6 +1,7 @@
 #ifndef HELPERS_HPP 
 #define HELPERS_HPP
 
+
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -9,6 +10,11 @@
 #include <list>
 #include <cstddef>
 #include <algorithm>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+
 using namespace std;
 
 const int TABLE_SIZE = 2000; 
