@@ -14,6 +14,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <fcntl.h>
+#include <sys/stat.h>
 
 using namespace std;
 
@@ -96,5 +98,6 @@ int hashFunction(int n);
 float searchTrip(const string& filename, int bucket_index, int dstid, int hod);
 float searcInBucket(vector<Trip> bucket, int dstid, int hod);
 float pipe_process(int id_origen, int id_destino, int hora);
+void menu(const char* pipe_name);
 
 #endif
