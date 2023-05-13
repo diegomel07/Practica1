@@ -1,17 +1,19 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
-# Set the project name
-project(practica1)
+project(pipe-example)
 
-# Set the C++ standard
 set(CMAKE_CXX_STANDARD 11)
 
-# Add an executable
-add_executable(practica1 p1-odProgram.cpp helpers.cpp)
+# Compile the helper functions into a static library
+add_library(helpers STATIC helpers.cpp )
+target_include_directories(helpers PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-# Add the directory containing the header file to the include path
-target_include_directories(practica1 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+# Compile the menu program
+add_executable(menu menu.cpp)
+target_link_libraries(menu PRIVATE helpers)
+target_include_directories(menu PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-# Set the output directory for the executable
-set_target_properties(practica1 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
-
+# Compile the reader program
+add_executable(search search.cpp)
+target_link_libraries(search PRIVATE helpers)
+target_include_directories(search PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
